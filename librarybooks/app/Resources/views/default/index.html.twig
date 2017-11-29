@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Last ten books</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Publicationdate</th>
+            <th>Registerdate</th>
+            <th>Rating</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for book in books %}
+        <tr>
+            <td><a href="{{ path('book_show', { 'id': book.id }) }}">{{ book.id }}</a></td>
+            <td>{{ book.name }}</td>
+            <td>{% if book.publicationDate %}{{ book.publicationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if book.registerDate %}{{ book.registerDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ book.rating }}</td>
+            <td>{{ book.authorOfBook}}
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('book_show', { 'id': book.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('book_edit', { 'id': book.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<h1>Authors list</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Dateofbirth</th>
+            <th>Gender</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for author in authors %}
+        <tr>
+            <td><a href="{{ path('author_show', { 'id': author.id }) }}">{{ author.id }}</a></td>
+            <td>{{ author.name }}</td>
+            <td>{% if author.dateOfBirth %}{{ author.dateOfBirth|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ author.gender }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('author_show', { 'id': author.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('author_edit', { 'id': author.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<h1>Genres list</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for genre in genres %}
+        <tr>
+            <td><a href="{{ path('genre_show', { 'id': genre.id }) }}">{{ genre.id }}</a></td>
+            <td>{{ genre.title }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('genre_show', { 'id': genre.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('genre_edit', { 'id': genre.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

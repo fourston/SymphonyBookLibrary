@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div style="margin-top:10%;">
+  <ul class="list-group">
+  <li class="list-group-item">Name of book: {{book.name}}</li>
+  <li class="list-group-item">Author of book: {{book.author}}</li>
+  <li class="list-group-item">Genre of book: {{book.genre}}</li>
+  <a href="/books">Back to books</a>
+  </ul>
+</div>
+{% endblock %}

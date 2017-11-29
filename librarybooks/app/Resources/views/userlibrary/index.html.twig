@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Userlibraries list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userLibrary in userLibraries %}
+            <tr>
+                <td><a href="{{ path('userlibrary_show', { 'id': userLibrary.id }) }}">{{ userLibrary.id }}</a></td>
+                <td>{{ userLibrary.username }}</td>
+                <td>{{ userLibrary.password }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('userlibrary_show', { 'id': userLibrary.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('userlibrary_edit', { 'id': userLibrary.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('userlibrary_new') }}">Create a new userLibrary</a>
+        </li>
+    </ul>
+{% endblock %}
